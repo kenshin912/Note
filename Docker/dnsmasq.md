@@ -3,18 +3,17 @@
 #### Search dnsmasq
 `sudo docker search dnsmasq`
 
-#### Pull the image from docker.io to local
+#### Pull image from docker.io to the local
 `sudo docker pull andyshinn/dnsmasq`
 
-#### Run Container
+#### Run Container with some args
 `sudo docker run -d --restart=always --name dnsmasq -p 53:53/tcp -p 53:53/udp --cap-add=NET_ADMIN andyshinn/dnsmasq`
 
 #### No bash env in this Container
 `sudo docker exec -it dnsmasq /bin/sh`
 
-#### Modifiy /etc/dnsmasq.conf
-Use `ifconfig` get docker internal IP Address
-Listen IP Address of Docker Container itself
+#### Modify /etc/dnsmasq.conf
+Use `ifconfig` to get docker internal IP Addr & Listen IP Addr of Docker Container itself
 ```
 listen-address=172.17.0.5
 server=119.29.29.29
