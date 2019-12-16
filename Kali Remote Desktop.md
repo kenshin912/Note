@@ -22,7 +22,7 @@ $ sudo vim /etc/xrdp/xrdp.ini
 To
 > ==max_bpp = 16==
 
-If u are using x-window , logoff and try again the follow code.
+If u are using x-window , logoff and try again the following code.
 
 ```
 $ sudo service xrdp start
