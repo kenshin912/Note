@@ -30,5 +30,5 @@ for /f "tokens=4" %%i in ('sc query Wlansvc ^|findstr /i "state.*:"') do (
 )
 exit
 :tips
-mshta vbscript:msgbox("WLAN·þÎñÎ´×¢²á!",16,"Error")(window.close)
+mshta vbscript:msgbox("WLAN service not registed!",16,"Error")(window.close)
 exit
