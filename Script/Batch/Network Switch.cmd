@@ -1,6 +1,6 @@
 @echo off
 REM AUTHOR:YUAN
-REM Controll Adapter status via WLAN service status.
+REM Control Adapter status via WLAN service status.
 sc query Wlansvc >nul
 if errorlevel 1 (
   goto tips
