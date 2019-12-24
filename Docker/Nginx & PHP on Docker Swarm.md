@@ -188,6 +188,10 @@ deb http://mirrors.163.com/debian-security/ jessie/updates main
 
 > $ sudo docker tag local/php:v1 192.168.1.228:5000/yuan/php:v1
 
+> $ sudo docker push 192.168.1.228:5000/yuan/php
+
+> $ sudo docker push 192.168.1.228:5000/yuan/nginx
+
 
 ### Docker Swarm
 
@@ -251,3 +255,10 @@ services:
 
 ##### RUN Swarm
 > $ sudo docker stack deploy -c service_stack.yml yuan
+
+> sudo docker service ls
+```
+ID                  NAME                MODE                REPLICAS            IMAGE                                PORTS
+txdfs0g500oj        yuan_nginx          replicated          2/2                 192.168.1.228:5000/yuan/nginx:v1     *:80->80/tcp, *:443->443/tcp
+s8dhwk9g2m7o        yuan_php            replicated          2/2                 192.168.1.228:5000/yuan/php:latest
+```
