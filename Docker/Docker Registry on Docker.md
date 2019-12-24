@@ -1,4 +1,4 @@
-## Build Private DockerHub on Docker
+## Running Docker Registry on Docker
 
 #### Create directory
 > sudo mkdir -p /home/yuan/DockerRegistry
