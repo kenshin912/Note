@@ -1,16 +1,20 @@
-## Running Nginx & PHP on Docker Swarm Mode
+# Running Nginx & PHP on Docker Swarm Mode
 
-### Docker Registry
+## Docker Registry
+
 ```
 On Docker Swarm Mode , the nodes of whole Cluster should use the same image.
 Push image to Registry when image build done.
 When Cluster working , it will download image from Registry automatically.
 ```
+
 > [--> Running Docker Registry on Docker <--](https://github.com/kenshin912/Note/blob/master/Docker/Docker%20Registry%20on%20Docker.md)
 
-### Build Image
-* #### File Structure
-```
+## Build Image
+
+### File Structure
+
+```yml
 +-- docker-compose.yml
 +-- logs
 +-- nginx
@@ -36,8 +40,10 @@ When Cluster working , it will download image from Registry automatically.
 |       +-- config
 |           +-- config.inc.php
 ```
-##### docker-compose.yml
-```
+
+### docker-compose.yml
+
+```yml
 version: '2'
 services:
     nginx:
@@ -86,8 +92,9 @@ networks:
     backend:
 ```
 
-##### Nginx Dockerfile
-```
+### Nginx Dockerfile
+
+```dockerfile
 FROM nginx:latest
 ENV TZ=Asia/Shanghai
 RUN mkdir -p /etc/nginx/ssl
@@ -96,8 +103,9 @@ COPY ./nginx/ssl /etc/nginx/ssl
 COPY ./www /usr/share/nginx/html
 ```
 
-##### PHP Dockerfile
-```
+### PHP Dockerfile
+
+```dockerfile
  FROM alpine
 
  LABEL maintainer="Kenshin <kenshin912@gmail.com>"
@@ -169,21 +177,26 @@ CMD ["/usr/sbin/php-fpm7", "-R", "--nodaemonize"]
 EXPOSE 9000
 ```
 
-##### Source.list 
-```
+### Source.list 
+
+```bash
 deb http://mirrors.163.com/debian/ jessie main
 deb http://mirrors.163.com/debian/ jessie-updates main
 deb http://mirrors.163.com/debian-security/ jessie/updates main
 ```
-##### Build images
+
+### Build images
+
 > $ sudo docker build -t local/php:v1
 
 > $ sudo docker build -t local/nginx:v1
 
-##### RUN docker-compose
+### RUN docker-compose
+
 > $ sudo docker-compose up -d
 
-##### Push images to Registry
+### Push images to Registry
+
 > $ sudo docker tag local/nginx:v1 192.168.1.228:5000/yuan/nginx:v1
 
 > $ sudo docker tag local/php:v1 192.168.1.228:5000/yuan/php:v1
@@ -192,38 +205,46 @@ deb http://mirrors.163.com/debian-security/ jessie/updates main
 
 > $ sudo docker push 192.168.1.228:5000/yuan/nginx
 
+## Docker Swarm
 
-### Docker Swarm
+### Initial Swarm Mode
 
-#### Initial Swarm Mode
+### On Swarm Leader
 
-##### On Swarm Leader
 > $ sudo docker swarm init
 
-##### On Swarm Node
+### On Swarm Node
+
 > $ sudo docker swarm join --token SWMTKN-1-36obhahlhhwfefcs46olwslzmcg0kogth2k7vs032e8iuvx3ep-19xqdp0htn8pqiq47qblo64ob 192.168.1.229:2377
 
-##### Confirm Swarm Mode Actived
+### Confirm Swarm Mode Actived
+
 > $ sudo docker node ls
-```
+
+```bash
 ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION
 33h23pz0ky1nfw1iumc6jgg32 *   DockerSwarmManage   Ready               Active              Leader              19.03.5
 me16dolfohrno24wxqba9p8dm     DockerSwarmNode1    Ready               Active                                  19.03.5
 
 ```
-##### HTTP Protocol support
+
+### HTTP Protocol support
+
 * Do this on EVERY NODE ( include Swarm Leader )
+
 > $ sudo vim /etc/docker/daemon.json
 
-```
+```bash
 { "insecure-registries": ["192.168.1.228:5000"] }
 ```
 
 > $ sudo systemctl restart docker.service
 
-##### Create stack file
+### Create stack file
+
 > $ sudo vim service_stack.yml
-```
+
+```yml
 version: '3'
 services:
     nginx:
@@ -253,11 +274,13 @@ services:
          driver: overlay
 ```
 
-##### RUN Swarm
+### RUN Swarm
+
 > $ sudo docker stack deploy -c service_stack.yml yuan
 
 > sudo docker service ls
-```
+
+```bash
 ID                  NAME                MODE                REPLICAS            IMAGE                                PORTS
 txdfs0g500oj        yuan_nginx          replicated          2/2                 192.168.1.228:5000/yuan/nginx:v1     *:80->80/tcp, *:443->443/tcp
 s8dhwk9g2m7o        yuan_php            replicated          2/2                 192.168.1.228:5000/yuan/php:latest
