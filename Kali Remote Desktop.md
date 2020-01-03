@@ -1,22 +1,25 @@
-**On Kali**
+# Kali Remote Desktop
+
+## On Kali
 
 > Install xrdp
 
-```
-$ sudo apt-get install xrdp -y
+```bash
+sudo apt-get install xrdp -y
 ```
 
 > Install vnc4server
 
-```
-$ sudo apt-get install vnc4server -y
+```bash
+sudo apt-get install vnc4server -y
 ```
 
 > Edit xrdp config file
 
+```bash
+sudo vim /etc/xrdp/xrdp.ini
 ```
-$ sudo vim /etc/xrdp/xrdp.ini
-```
+
 > ==max_bpp = 32==
 
 To
@@ -24,13 +27,13 @@ To
 
 If u are using x-window , logoff and try again the following code.
 
-```
-$ sudo service xrdp start
-$ sudo service xrdp-sesman start
-$ sudo vncserver
+```bash
+sudo service xrdp start
+sudo service xrdp-sesman start
+sudo vncserver
 ```
 
-**On Windows OS**
+## On Windows OS
 
 Open mstsc & input kali server IP
 

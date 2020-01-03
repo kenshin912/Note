@@ -1,19 +1,21 @@
-#### Use WOL on iPhone in 4G Mode
+# Use WOL on iPhone in 4G Mode
 
-#### iPhone Setting
- * Search "WOL" in AppStore & Download App
+## iPhone Setting
 
- * Input Extenal IP Addr & Your Computer MAC Addr.
+* Search "WOL" in AppStore & Download App
+* Input Extenal IP Addr & Your Computer MAC Addr.
 
-#### Gateway Setting
- * NAT Setting -> VirtualServer
- * Random Extenal Port => 9 Port (udp) to your computer static IP Addr
+## Gateway Setting
 
-#### Computer Setting
- * "This PC" -> "Manage" -> "Device Manager" -> "Network Adapters" 
- * Choose your network card , right click -> " Properties" -> "Advanced"
- * "Shutdown Wake-On-Lan":"Enabled" , "Wake on Magic Packet":"Enabled"
- * Enable WOL in BIOS Setting
+* NAT Setting -> VirtualServer
+* Random Extenal Port => 9 Port (udp) to your computer static IP Addr
+* ARP Binding your MAC Addr to your static IP Addr
 
- ### JUST Do it
- 
+## Computer Setting
+
+* "This PC" -> "Manage" -> "Device Manager" -> "Network Adapters" 
+* Choose your network card , right click -> " Properties" -> "Advanced"
+* "Shutdown Wake-On-Lan":"Enabled" , "Wake on Magic Packet":"Enabled"
+* Enable WOL in BIOS Setting
+
+### JUST Do it
