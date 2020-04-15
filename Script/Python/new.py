@@ -67,4 +67,4 @@ class umeiSpider:
 
 if __name__ == "__main__":
     result = umeiSpider()
-    result.main(50,60)
+    result.main(500,1000)
