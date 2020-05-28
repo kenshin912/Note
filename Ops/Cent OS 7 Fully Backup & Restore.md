@@ -8,16 +8,16 @@ cd /
 tar cvpzf backup.tgz / --exclude=/proc --exclude=/lost+found --exclude=/backup.tgz  --exclude=/mnt --exclude=/sys --exclude=/media --exclude=/tmp
 ```
 
-## Backup "fstab" & "grub.cfg" on Destnation Server
+## Backup "fstab" & "grub.cfg" on Destination Server
 
 ```bash
 cp /etc/fstab /
 cp /boot/grub2/grub.cfg /
 ```
 
-## Transfer "backup.tar" to Destnation Server
+## Transfer "backup.tar" to Destination Server
 
-## Restore files on Destnation Server
+## Restore files on Destination Server
 
 ```bash
 su root
