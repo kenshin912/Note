@@ -37,15 +37,15 @@ You can access Aliyun RDS via Local Port
 # Run this script every 5 minutes by crontab to prevent tunnel disappear cause ip address change.
 # */5 * * * * /root/tunnel.sh rds > /dev/null 2>&1
 
-AliRDS=(172.16.159.25 3306)
-AliREDIS=(172.16.68.144 6379)
-AliMQ=(172.16.68.144 15672)
+AliRDS=(172.16.xxx.xxx 3306)
+AliREDIS=(172.16.xxx.xxx 6379)
+AliMQ=(172.16.xxx.xxx 15672)
 LocalRDSPort=3307
 LocalREDISPort=6379
 LocalMQPort=15672
-RDSProxyServer=(121.196.60.28 22 Ubilin2019)
-REDISProxyServer=(121.196.58.33 22 Ubilin2019)
-MQProxyServer=(121.196.58.33 22 Ubilin2019)
+RDSProxyServer=(121.xxx.xx.xx 22 mimamima)
+REDISProxyServer=(121.xxx.xx.xx 22 mimamima)
+MQProxyServer=(121.xxx.xx.xx 22 mimamima)
 ProxyServerUser=root
 
 function ESTABLISH_TUNNEL() {
