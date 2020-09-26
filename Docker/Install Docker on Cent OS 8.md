@@ -24,7 +24,7 @@ Install Docker-ce
 
 Running Docker
 
-> $ sudo systemctl enbale docker.service
+> $ sudo systemctl enable docker.service
 
 > $ sudo systemctl start docker.service
 
