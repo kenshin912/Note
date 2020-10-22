@@ -34,12 +34,15 @@ fi
 ---------------------------------------
 
 source ~/.bashrc
+```
 
 ### if you don't know about powerline path , try to use the following command:
 
 > pip show powerline-status
 
 > pip3 show powerline-status
+
+```bash
 
 vim /usr/lib/python2.7/site-packages/powerline_shell/themes/default.py
 
