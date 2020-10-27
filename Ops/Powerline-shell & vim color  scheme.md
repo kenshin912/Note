@@ -162,6 +162,7 @@ vim ~/.vimrc
 
 
 --------------------------------------------
+syntax enable
 colorscheme molokai
 set t_Co=256
 set background=dark
