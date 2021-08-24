@@ -68,12 +68,9 @@ EOF
 ```bash
 yum install kubectl kubelet kubeadm -y
 
-systemctl enable kubelet
+systemctl enable --now kubelet
 
-kubeadm init --kubernetes-version=1.19.3  \
---apiserver-advertise-address=192.168.1.100   \
---image-repository registry.aliyuncs.com/google_containers  \
---service-cidr=10.10.0.0/16 --pod-network-cidr=10.100.0.0/16
+kubeadm init --kubernetes-version=1.22.1 --apiserver-advertise-address=192.168.1.181 --service-cidr=10.10.0.0/16 --pod-network-cidr=10.100.0.0/16
 ```
 
 POD CIDR: 10.122.0.0/16， apiserver's Address is master's IP Address itself.
