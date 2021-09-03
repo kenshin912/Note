@@ -7,8 +7,14 @@ wget https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo -O /etc/yu
 yum clean all
 yum makecache fast
 yum list docker-ce --showduplicates | sort -r
-yum install -y docker-ce-20.10.8-3.el7
+yum install docker-ce-20.10.8-3.el7 -y
 systemctl enable docker
 systemctl start docker
+```
+
+```bash
+yum install bash-completion -y
+source /usr/share/bash-completion/bash_completion
+source /usr/share/bash-completion/completions/docker
 ```
 
