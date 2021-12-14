@@ -6,7 +6,6 @@ Docker image 来源: https://github.com/jumpserver/Dockerfile/tree/master/allino
 
 反向代理部署参考: https://docs.jumpserver.org/zh/master/admin-guide/proxy/
 
-部署域名为 https://jump.qferp.net , 使用 *.qferp.net 泛域名证书.
 
 
 
@@ -110,16 +109,16 @@ flush privileges;
 ```nginx
 server {
     listen 80;
-    server_name jump.qferp.net;
+    server_name xxx.xxx.net;
     return 301 https://$server_name$request_uri;
 }
 
 server {
     listen 443 ssl;
-    server_name jump.qferp.net;
+    server_name xxx.xxx.net;
 
-    ssl_certificate     /etc/nginx/ssl/qferp.net.pem; # SSL 证书
-    ssl_certificate_key /etc/nginx/ssl/qferp.net.key;
+    ssl_certificate     /etc/nginx/ssl/xxx.net.pem; # SSL 证书
+    ssl_certificate_key /etc/nginx/ssl/xxx.net.key;
 
     ssl_session_timeout 1d;
     ssl_session_cache shared:MozSSL:10m;
