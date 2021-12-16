@@ -6,8 +6,6 @@ Docker image 来源: https://github.com/jumpserver/Dockerfile/tree/master/allino
 
 反向代理部署参考: https://docs.jumpserver.org/zh/master/admin-guide/proxy/
 
-部署域名为 https://jump.qferp.net , 使用 *.qferp.net 泛域名证书.
-
 
 
 > ⚠️ 注意事项
