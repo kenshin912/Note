@@ -51,7 +51,7 @@ ProxyServerUser=root
 function ESTABLISH_TUNNEL() {
     >/dev/tcp/${5}/${6}
     if [ "$?" -eq "0" ];then
-        STATUS=`ps aux | grep "ssh -CfNg -L ${1}" | grep -v "grep"`
+        STATUS=`ps aux | grep "ssh -CfNg -o ServerAliveInterval=90 -L ${1}" | grep -v "grep"`
         if [ -n "${STATUS}" ];then
             echo "Tunnel still alive now..."
             exit 1
