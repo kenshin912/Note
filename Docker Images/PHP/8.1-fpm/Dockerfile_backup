@@ -1,0 +1,35 @@
+FROM php:8.1-fpm-alpine
+
+MAINTAINER Yuan <kenshin912@gmail.com>
+
+#ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
+
+RUN set -xe \
+        && sed -i "s/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g" /etc/apk/repositories \
+        && apk --no-cache add tzdata \
+        && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+        && echo "Asia/Shanghai" > /etc/timezone \
+        && apk del tzdata \
+        && apk add --no-cache --virtual .build-dep $PHPIZE_DEPS curl-dev libtool libjpeg-turbo-dev libpng-dev libwebp-dev libsodium-dev libevent-dev libzip-dev libmcrypt-dev freetype-dev imagemagick-dev icu-dev postgresql-dev oniguruma-dev libxml2-dev \
+        && apk add --no-cache shadow imagemagick \
+        && docker-php-ext-configure gd --with-freetype --with-jpeg \
+        && docker-php-ext-install -j "$(nproc)" intl bcmath gd zip pdo pdo_mysql pdo_pgsql mysqli opcache soap pcntl exif sockets \
+        && pecl install imagick redis mongodb memcache event swoole --enable-sockets --enable-mysqlnd \
+        && docker-php-ext-enable imagick redis mongodb memcache event swoole \
+        && curl -o /usr/bin/composer https://mirrors.aliyun.com/composer/composer.phar \
+        && chmod +x /usr/bin/composer \
+        && composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/ \
+        && usermod -u 1000 www-data \
+        && groupmod -g 1000 www-data \
+        && apk del .build-dep shadow \
+        && rm -rf /var/cache/apk/* \
+        && rm -rf /tmp/* \
+        && rm -f /usr/local/etc/php-fpm.d/www.conf
+
+WORKDIR /usr/local/etc/
+
+ENTRYPOINT ["docker-php-entrypoint"]
+
+CMD ["php-fpm","-R"]
+
+EXPOSE 9000

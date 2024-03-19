@@ -1,0 +1,21 @@
+FROM ubuntu:18.04
+
+MAINTAINER kenshin912@gmail.com
+ADD jre.tar.gz /usr/local/
+
+RUN apt update \
+    && apt install -y tzdata \
+    && ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone \
+    && dpkg-reconfigure --frontend noninteractive tzdata \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV TZ=Asia/Shanghai \
+    DEBIAN_FRONTEND=noninteractive
+ENV JAVA_HOME /usr/local/jre
+ENV PATH ${PATH}:${JAVA_HOME}/bin
+ENV LANG C.UTF-8
+
+WORKDIR /home
+
+CMD ["java","-version"]
