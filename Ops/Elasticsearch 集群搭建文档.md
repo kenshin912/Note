@@ -200,6 +200,3 @@ vim /usr/local/elasticsearch/config/jvm.options
 Elasticsearch 使用 `Xms` ( minimum heap size ) 以及 `Xmx` ( maxmimum heap size ) 设置堆的大小，你应该将这两个值设置为同样大小。
 
 `Xms`  和 `Xmx` 不能大于宿主机内存的 50 % ，建议设置为宿主机可用 RAM 的 50 % ，最多最大 30 GB，以避免 GC
-
-
-
